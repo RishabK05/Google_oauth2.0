@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Authorized Apps</title>
+  </head>
+  <body>
+    <h1>Authorized Apps</h1>
+    <ul>
+      <% appsList.forEach(app => { %>
+        <li>
+          <strong>Name:</strong> <%= app.name %><br>
+          <strong>Identifier:</strong> <%= app.identifier %><br>
+          <!-- Display other desired properties of the app -->
+        </li>
+      <% }) %>
+    </ul>
+  </body>
+</html>
