@@ -1,18 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Authorized Apps</title>
-  </head>
-  <body>
-    <h1>Authorized Apps</h1>
-    <ul>
-      <% appsList.forEach(app => { %>
-        <li>
-          <strong>Name:</strong> <%= app.name %><br>
-          <strong>Identifier:</strong> <%= app.identifier %><br>
-          <!-- Display other desired properties of the app -->
-        </li>
-      <% }) %>
-    </ul>
-  </body>
+<head>
+  <title>Authorized Apps</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 20px;
+    }
+
+    strong {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Authorized Apps</h1>
+  <ul>
+    <% appsList.forEach(app => { %>
+      <li>
+        <strong>Name:</strong> <%= app.name %><br>
+        <strong>installed:</strong> <%= app.installed %><br>
+        <strong>Short Description:</strong> <%= app.shortDescription %><br>
+        <strong>Authorized:</strong> <%= app.Authorized %><br>
+        <!-- Display other desired properties of the app -->
+      </li>
+    <% }) %>
+  </ul>
+</body>
 </html>

@@ -1,11 +1,12 @@
 const express = require('express');
 const axios = require('axios');
+require('dotenv').config();
 
 const app = express();
 
-const clientId = '909979546267-0amk3tf9g190gddue9vpuufhg1gjnqcr.apps.googleusercontent.com';
-const clientSecret = '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';
-const redirectUrl = 'http://localhost:3000/auth/callback';
+const clientId = process.env.CLIENT_ID;
+const clientSecret = process.env.CLIENT_SECRET;
+const redirectUrl = process.env.REDIRECT_URI;
 
 const authorizationUrl = `https://accounts.google.com/o/oauth2/auth?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUrl)}&response_type=code&scope=https://www.googleapis.com/auth/drive.apps.readonly`;
 
