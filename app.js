@@ -28,20 +28,35 @@ app.get('/auth/callback', async (req, res) => {
 
     const accessToken = data.access_token;
 
-    const { data: appsResponse } = await axios.get('https://www.googleapis.com/drive/v2/apps', {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    });
+    try {
+      const { data: appsResponse } = await axios.get('https://www.googleapis.com/drive/v2/apps', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
 
-    const appsList = appsResponse.items;
-    console.log(appsList);
+      const appsList = appsResponse.items;
+      console.log(appsList);
 
-    res.render('index', { appsList });
+      res.render('index', { appsList });
+    } catch (error) {
+      console.error('Error retrieving authorized applications:', error);
+      res.status(500).send('Error retrieving authorized applications');
+    }
   } catch (error) {
     console.error('Error during OAuth callback:', error);
-    res.sendStatus(500);
+    res.status(500).send('Error during OAuth callback');
   }
+});
+
+// Error handling routes
+app.use((req, res) => {
+  res.status(404).send('Page not found');
+});
+
+app.use((err, req, res, next) => {
+  console.error('Internal server error:', err);
+  res.status(500).send('Internal server error');
 });
 
 app.set('view engine', 'ejs');
