@@ -1,0 +1,17 @@
+<!-- drive-apps.ejs -->
+<html>
+  <head>
+    <title>Drive Apps</title>
+  </head>
+  <body>
+    <h1>Drive Apps</h1>
+    <ul>
+      <% driveApps.forEach(app => { %>
+        <li>
+          <strong>Name:</strong> <%= app.name %><br>
+          <strong>Installed:</strong> <%= app.installed %><br>
+        </li>
+      <% }); %>
+    </ul>
+  </body>
+</html>
