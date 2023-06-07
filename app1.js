@@ -8,7 +8,6 @@ require('dotenv').config();
 
 const app = express();
 
-// Set up sessions
 app.use(session({
   secret: 'your_session_secret',
   resave: true,
@@ -48,14 +47,12 @@ app.set('view engine', 'ejs');
 app.get('/', passport.authenticate('google', { scope: ['profile', 'https://www.googleapis.com/auth/drive.apps.readonly'] }));
 
 app.get('/auth/callback', passport.authenticate('google', {
-  successRedirect: '/drive-apps', // Replace with your success redirect URL
-  failureRedirect: '/login' // Replace with your failure redirect URL
+  successRedirect: '/drive-apps', 
+  failureRedirect: '/login' 
 }));
 
 app.get('/drive-apps', (req, res) => {
-  // Access the retrieved Drive apps from req.user
   const driveApps = req.user;
-  // Render the EJS template and pass the driveApps data
   res.render('drive-apps', { driveApps });
 });
 
